@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +6,8 @@
   <style>
     /* ====== CSS ====== */
     body {
-      background: linear-gradient(135deg, #ffe0f0, #ffb6d1);
-      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #ffe0f5, #ffd1ec);
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
       color: #333;
@@ -33,38 +32,60 @@
       margin: 5px;
       color: white;
       font-weight: bold;
-      font-size: 18px;
-      border-radius: 10px;
+      font-size: 16px;
+      border-radius: 15px;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
     button:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
     section {
       margin: 20px auto;
       padding: 20px;
-      max-width: 800px;
+      max-width: 900px;
     }
 
     section ul {
-      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
       padding: 0;
+      list-style: none;
+      justify-content: center;
     }
 
     section ul li {
-      background: white;
+      background: #fff;
       padding: 15px;
-      margin: 10px 0;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+      width: 250px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       font-size: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    section ul li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    a {
+      text-decoration: none;
+      color: #c2185b;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     .hidden { display: none; }
+
   </style>
 </head>
 <body>
@@ -74,7 +95,7 @@
     <nav>
       <button onclick="showSection('grammar')">Grammar</button>
       <button onclick="showSection('vocabulary')">Vocabulary</button>
-      <button onclick="showSection('speaking')">Speaking Practice</button>
+      <button onclick="showSection('speaking')">Speaking</button>
       <button onclick="showSection('listening')">Listening</button>
       <button onclick="showSection('quiz')">Quiz</button>
     </nav>
@@ -97,7 +118,7 @@
   </section>
 
   <section id="listening" class="hidden">
-    <h2>Listening</h2>
+    <h2>Listening Practice</h2>
     <ul id="listening-tips"></ul>
   </section>
 
@@ -112,15 +133,11 @@
       "Present Simple: I play / He plays",
       "Present Continuous: I am playing",
       "Present Perfect: I have played",
-      "Present Perfect Continuous: I have been playing",
       "Past Simple: I played",
       "Past Continuous: I was playing",
       "Past Perfect: I had played",
-      "Past Perfect Continuous: I had been playing",
       "Future Simple: I will play",
-      "Future Continuous: I will be playing",
-      "Future Perfect: I will have played",
-      "Future Perfect Continuous: I will have been playing"
+      "Future Continuous: I will be playing"
     ];
 
     const vocabulary = [
@@ -128,9 +145,8 @@
       {word: "Achieve", meaning: "Successfully reach a goal."},
       {word: "Challenge", meaning: "A difficult task."},
       {word: "Flexible", meaning: "Able to adapt easily."},
-      {word: "Motivate", meaning: "To give someone reason to act."},
       {word: "Confidence", meaning: "Belief in yourself."},
-      {word: "Improve", meaning: "Make something better."},
+      {word: "Motivate", meaning: "To give someone reason to act."},
       {word: "Goal", meaning: "The aim or desired result."},
       {word: "Focus", meaning: "Pay attention to one thing."},
       {word: "Success", meaning: "Achieving what you want."}
@@ -141,38 +157,20 @@
       "Record yourself and listen.",
       "Speak slowly and clearly.",
       "Use new vocabulary in sentences.",
-      "Try tongue twisters to improve pronunciation.",
-      "Practice common questions.",
-      "Learn useful phrases.",
-      "Repeat after native speakers.",
-      "Don't be afraid of mistakes.",
-      "Talk with friends in English."
+      "Try tongue twisters to improve pronunciation."
     ];
 
     const listeningTips = [
-      "Watch English movies with subtitles.",
-      "Listen to English podcasts.",
-      "Repeat phrases you hear.",
-      "Listen to songs and try to understand lyrics.",
-      "Use apps for listening practice.",
-      "Watch short videos daily.",
-      "Try to catch keywords in sentences.",
-      "Focus on pronunciation.",
-      "Listen to news in English.",
-      "Practice dictation exercises."
+      {title: "BBC Learning English", link: "https://www.youtube.com/user/bbclearningenglish"},
+      {title: "English Addict with Mr Steve", link: "https://www.youtube.com/watch?v=nm7h6QqP3jQ"},
+      {title: "Learn English with Movies", link: "https://www.youtube.com/watch?v=U7u1w7RVkYs"}
     ];
 
     const quizQuestions = [
       {q: "Present Simple: I ___ to school every day", a: "go"},
       {q: "Past Simple: Yesterday I ___ a movie", a: "watched"},
       {q: "Future Simple: Tomorrow I ___ a book", a: "will read"},
-      {q: "Present Continuous: I ___ now", a: "am reading"},
-      {q: "Present Perfect: I ___ this book before", a: "have read"},
-      {q: "Future Continuous: At 8 PM I ___", a: "will be studying"},
-      {q: "Vocabulary: opposite of 'failure'", a: "success"},
-      {q: "Vocabulary: believe in yourself", a: "confidence"},
-      {q: "Speaking: say 'Hello' politely", a: "hello"},
-      {q: "Listening: is 'Yes' correct? (Yes/No)", a: "Yes"}
+      {q: "Vocabulary: opposite of 'failure'", a: "success"}
     ];
 
     function showSection(id) {
@@ -183,7 +181,7 @@
       if(id === "grammar") displayList("grammar-tips", grammarTips);
       if(id === "vocabulary") displayVocabulary();
       if(id === "speaking") displayList("speaking-tips", speakingTips);
-      if(id === "listening") displayList("listening-tips", listeningTips);
+      if(id === "listening") displayListening();
       if(id === "quiz") displayQuiz();
     }
 
@@ -195,6 +193,12 @@
     function displayVocabulary(){
       const container = document.getElementById("vocabulary-list");
       container.innerHTML = vocabulary.map(item => `<li><b>${item.word}</b>: ${item.meaning}</li>`).join("");
+    }
+
+    function displayListening(){
+      const container = document.getElementById("listening-tips");
+      container.innerHTML = listeningTips.map(item => 
+        `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`).join("");
     }
 
     function displayQuiz(){
@@ -212,6 +216,7 @@
       });
       alert(`Your score: ${score}/${quizQuestions.length}`);
     }
+
   </script>
 </body>
 </html>
