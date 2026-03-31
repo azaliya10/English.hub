@@ -1,1 +1,217 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>English Skills Hub</title>
+  <style>
+    /* ====== CSS ====== */
+    body {
+      background: linear-gradient(135deg, #ffe0f0, #ffb6d1);
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    h1, h2 {
+      text-align: center;
+      font-weight: 800;
+      color: #d81b60;
+      margin-top: 20px;
+    }
+
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    button {
+      background: #ff80ab;
+      border: none;
+      padding: 12px 24px;
+      margin: 5px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    section {
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 800px;
+    }
+
+    section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    section ul li {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+      font-size: 16px;
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>English Skills Hub</h1>
+    <nav>
+      <button onclick="showSection('grammar')">Grammar</button>
+      <button onclick="showSection('vocabulary')">Vocabulary</button>
+      <button onclick="showSection('speaking')">Speaking Practice</button>
+      <button onclick="showSection('listening')">Listening</button>
+      <button onclick="showSection('quiz')">Quiz</button>
+    </nav>
+  </header>
+
+  <!-- Sections -->
+  <section id="grammar" class="hidden">
+    <h2>Grammar: All Tenses</h2>
+    <ul id="grammar-tips"></ul>
+  </section>
+
+  <section id="vocabulary" class="hidden">
+    <h2>Vocabulary</h2>
+    <ul id="vocabulary-list"></ul>
+  </section>
+
+  <section id="speaking" class="hidden">
+    <h2>Speaking Practice</h2>
+    <ul id="speaking-tips"></ul>
+  </section>
+
+  <section id="listening" class="hidden">
+    <h2>Listening</h2>
+    <ul id="listening-tips"></ul>
+  </section>
+
+  <section id="quiz" class="hidden">
+    <h2>Quiz</h2>
+    <div id="quiz-container"></div>
+  </section>
+
+  <script>
+    // ====== JavaScript ======
+    const grammarTips = [
+      "Present Simple: I play / He plays",
+      "Present Continuous: I am playing",
+      "Present Perfect: I have played",
+      "Present Perfect Continuous: I have been playing",
+      "Past Simple: I played",
+      "Past Continuous: I was playing",
+      "Past Perfect: I had played",
+      "Past Perfect Continuous: I had been playing",
+      "Future Simple: I will play",
+      "Future Continuous: I will be playing",
+      "Future Perfect: I will have played",
+      "Future Perfect Continuous: I will have been playing"
+    ];
+
+    const vocabulary = [
+      {word: "Innovative", meaning: "Creative, introducing new ideas."},
+      {word: "Achieve", meaning: "Successfully reach a goal."},
+      {word: "Challenge", meaning: "A difficult task."},
+      {word: "Flexible", meaning: "Able to adapt easily."},
+      {word: "Motivate", meaning: "To give someone reason to act."},
+      {word: "Confidence", meaning: "Belief in yourself."},
+      {word: "Improve", meaning: "Make something better."},
+      {word: "Goal", meaning: "The aim or desired result."},
+      {word: "Focus", meaning: "Pay attention to one thing."},
+      {word: "Success", meaning: "Achieving what you want."}
+    ];
+
+    const speakingTips = [
+      "Practice speaking every day.",
+      "Record yourself and listen.",
+      "Speak slowly and clearly.",
+      "Use new vocabulary in sentences.",
+      "Try tongue twisters to improve pronunciation.",
+      "Practice common questions.",
+      "Learn useful phrases.",
+      "Repeat after native speakers.",
+      "Don't be afraid of mistakes.",
+      "Talk with friends in English."
+    ];
+
+    const listeningTips = [
+      "Watch English movies with subtitles.",
+      "Listen to English podcasts.",
+      "Repeat phrases you hear.",
+      "Listen to songs and try to understand lyrics.",
+      "Use apps for listening practice.",
+      "Watch short videos daily.",
+      "Try to catch keywords in sentences.",
+      "Focus on pronunciation.",
+      "Listen to news in English.",
+      "Practice dictation exercises."
+    ];
+
+    const quizQuestions = [
+      {q: "Present Simple: I ___ to school every day", a: "go"},
+      {q: "Past Simple: Yesterday I ___ a movie", a: "watched"},
+      {q: "Future Simple: Tomorrow I ___ a book", a: "will read"},
+      {q: "Present Continuous: I ___ now", a: "am reading"},
+      {q: "Present Perfect: I ___ this book before", a: "have read"},
+      {q: "Future Continuous: At 8 PM I ___", a: "will be studying"},
+      {q: "Vocabulary: opposite of 'failure'", a: "success"},
+      {q: "Vocabulary: believe in yourself", a: "confidence"},
+      {q: "Speaking: say 'Hello' politely", a: "hello"},
+      {q: "Listening: is 'Yes' correct? (Yes/No)", a: "Yes"}
+    ];
+
+    function showSection(id) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+
+      if(id === "grammar") displayList("grammar-tips", grammarTips);
+      if(id === "vocabulary") displayVocabulary();
+      if(id === "speaking") displayList("speaking-tips", speakingTips);
+      if(id === "listening") displayList("listening-tips", listeningTips);
+      if(id === "quiz") displayQuiz();
+    }
+
+    function displayList(elementId, array){
+      const container = document.getElementById(elementId);
+      container.innerHTML = array.map(item => `<li>${item}</li>`).join("");
+    }
+
+    function displayVocabulary(){
+      const container = document.getElementById("vocabulary-list");
+      container.innerHTML = vocabulary.map(item => `<li><b>${item.word}</b>: ${item.meaning}</li>`).join("");
+    }
+
+    function displayQuiz(){
+      const container = document.getElementById("quiz-container");
+      let score = 0;
+      container.innerHTML = "";
+      quizQuestions.forEach((q,i)=>{
+        const answer = prompt(`${i+1}. ${q.q}`);
+        if(answer && answer.trim().toLowerCase() === q.a.toLowerCase()){
+          alert("✅ Correct!");
+          score++;
+        } else {
+          alert(`❌ Wrong! Correct answer: ${q.a}`);
+        }
+      });
+      alert(`Your score: ${score}/${quizQuestions.length}`);
+    }
+  </script>
+</body>
+</html>
