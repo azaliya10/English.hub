@@ -1,2 +1,2 @@
 # English.hub
-English Skills Hub is an interactive website for teens to improve their English. It offers grammar tips, vocabulary, speaking practice, listening exercises, and mini-quizzes. 
+English Skills Hub is an interactive website for teens to improve their English. It offers grammar tips, vocabulary, speaking practice, listening exercises, and mini-quizzes. Each section provides advice, examples, and interactive tasks with score tracking. The bright, modern design with colorful cards and buttons makes learning fun and engaging while helping users develop language skills at their own pace.
