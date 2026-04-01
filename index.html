@@ -1,201 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>English Skills Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>English Skills Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #6C63FF, #48C6EF);
-      color: #333;
-    }
+<style>
 
-    header {
-      text-align: center;
-      padding: 30px;
-      color: white;
-    }
+/* BACKGROUND */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  color: white;
+}
 
-    h1 {
-      margin: 0;
-      font-size: 36px;
-    }
+/* HEADER */
+header {
+  text-align: center;
+  padding: 20px;
+}
 
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
+/* GRID */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 15px;
+  padding: 20px;
+}
 
-    .card {
-      background: white;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      transition: 0.3s;
-      cursor: pointer;
-    }
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .card:hover {
-      transform: translateY(-10px);
-    }
+.card:hover {
+  transform: scale(1.05);
+}
 
-    button {
-      margin-top: 10px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 10px;
-      background: #6C63FF;
-      color: white;
-      cursor: pointer;
-    }
+/* SECTION */
+.section {
+  display: none;
+  margin: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+}
 
-    button:hover {
-      background: #5548d9;
-    }
+.active { display: block; }
 
-    .hidden {
-      display: none;
-    }
+/* BUTTON */
+button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+  background: #6c63ff;
+  color: white;
+  cursor: pointer;
+}
 
-    .section {
-      padding: 20px;
-      background: white;
-      margin: 20px;
-      border-radius: 20px;
-    }
+button:hover {
+  background: #5848d6;
+}
 
-    .quiz-result {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  </style>
+/* QUIZ */
+#answers button {
+  display: block;
+  width: 100%;
+}
+
+/* FLASHCARD */
+.flashcard {
+  text-align: center;
+  font-size: 24px;
+  margin: 20px;
+}
+
+/* LEVEL */
+.level {
+  text-align: center;
+  margin-top: 10px;
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>English Skills Hub</h1>
-  <p>Improve your English in a fun and interactive way 🎯</p>
+<h1>English Skills Hub 🚀</h1>
+<p>Level up your English like a game 🎮</p>
+<div class="level" id="level"></div>
 </header>
 
 <div class="container">
-
-  <div class="card" onclick="showSection('grammar')">
-    <h2>📘 Grammar</h2>
-    <p>Learn structures and rules</p>
-  </div>
-
-  <div class="card" onclick="showSection('vocab')">
-    <h2>🧠 Vocabulary</h2>
-    <p>Expand your word bank</p>
-  </div>
-
-  <div class="card" onclick="showSection('speaking')">
-    <h2>🗣 Speaking</h2>
-    <p>Practice real conversations</p>
-  </div>
-
-  <div class="card" onclick="showSection('listening')">
-    <h2>🎧 Listening</h2>
-    <p>Podcasts & cartoons</p>
-  </div>
-
-  <div class="card" onclick="showSection('quiz')">
-    <h2>🎯 Quiz</h2>
-    <p>Test your knowledge</p>
-  </div>
-
+  <div class="card" onclick="show('grammar')">📘 Grammar</div>
+  <div class="card" onclick="show('vocab')">🧠 Vocabulary</div>
+  <div class="card" onclick="show('listening')">🎧 Listening</div>
+  <div class="card" onclick="startQuiz()">🎯 Quiz</div>
 </div>
 
 <!-- GRAMMAR -->
-<div id="grammar" class="section hidden">
-  <h2>Present Simple</h2>
-
-  <p><b>Structure:</b></p>
-  <p>✔ Subject + Verb → I play</p>
-  <p>✔ Question → Do/Does + Subject + Verb?</p>
-  <p>✔ Negative → Subject + do/does not + Verb</p>
-
-  <p><b>Examples:</b></p>
-  <p>I study English every day.</p>
-  <p>Do you like pizza?</p>
-  <p>She does not play tennis.</p>
+<div id="grammar" class="section">
+<h2>Present Simple</h2>
+<p>✔ Subject + Verb → I play</p>
+<p>✔ Question → Do/Does + Subject + Verb?</p>
+<p>✔ Negative → Subject + do/does not + Verb</p>
 </div>
 
 <!-- VOCAB -->
-<div id="vocab" class="section hidden">
-  <h2>Vocabulary</h2>
-  <p>Learn new words daily:</p>
-  <ul>
-    <li>Ambitious – /æmˈbɪʃəs/ – having goals</li>
-    <li>Improve – /ɪmˈpruːv/ – get better</li>
-    <li>Skill – /skɪl/ – ability</li>
-  </ul>
-</div>
-
-<!-- SPEAKING -->
-<div id="speaking" class="section hidden">
-  <h2>Speaking Practice</h2>
-  <p>Try answering:</p>
-  <ul>
-    <li>What do you do in your free time?</li>
-    <li>Why do you learn English?</li>
-  </ul>
+<div id="vocab" class="section">
+<h2>Vocabulary Trainer</h2>
+<div class="flashcard" id="word"></div>
+<button onclick="know()">I know</button>
+<button onclick="learn()">Learn</button>
+<p id="progress"></p>
 </div>
 
 <!-- LISTENING -->
-<div id="listening" class="section hidden">
-  <h2>Listening Topics</h2>
+<div id="listening" class="section">
+<h2>Listening 🎧</h2>
 
-  <button onclick="openLink('https://www.youtube.com/results?search_query=english+podcast')">Podcasts</button>
-  <button onclick="openLink('https://www.youtube.com/results?search_query=english+cartoons')">Cartoons</button>
+<h3>A1-A2</h3>
+<button onclick="openLink('https://www.youtube.com/watch?v=H9SmU2qR0lE')">Cartoon</button>
 
+<h3>B1-B2</h3>
+<button onclick="openLink('https://www.youtube.com/watch?v=O6Xo21L0ybE')">Podcast</button>
+
+<h3>C1</h3>
+<button onclick="openLink('https://www.youtube.com/watch?v=8jPQjjsBbIc')">Movie</button>
 </div>
 
 <!-- QUIZ -->
-<div id="quiz" class="section hidden">
-  <h2>Mini Quiz</h2>
-
-  <p>Choose correct answer:</p>
-  <p>She ___ to school every day.</p>
-
-  <button onclick="checkAnswer('goes')">goes</button>
-  <button onclick="checkAnswer('go')">go</button>
-
-  <p id="result" class="quiz-result"></p>
+<div id="quiz" class="section">
+<h2>Quiz 🎯</h2>
+<p id="timer"></p>
+<p id="question"></p>
+<div id="answers"></div>
+<p id="score"></p>
 </div>
 
 <script>
 
-function showSection(id) {
-  const sections = document.querySelectorAll('.section');
-  sections.forEach(sec => sec.classList.add('hidden'));
-
-  document.getElementById(id).classList.remove('hidden');
+/* NAV */
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-function openLink(url) {
-  window.open(url, '_blank');
+/* LEVEL SYSTEM */
+let xp = 0;
+
+function updateLevel(){
+  let level = "Beginner";
+  if(xp > 5) level = "Intermediate";
+  if(xp > 10) level = "Advanced";
+
+  document.getElementById("level").innerText = "XP: " + xp + " | " + level;
 }
 
-function checkAnswer(answer) {
-  const result = document.getElementById('result');
+/* VOCAB */
+const words = [
+["achieve","достигать"],["improve","улучшать"],["skill","навык"],
+["challenge","вызов"],["confident","уверенный"],
+["opportunity","возможность"],["experience","опыт"],
+["develop","развивать"],["success","успех"],
+["goal","цель"],["knowledge","знание"],
+["practice","практика"],["focus","фокус"],
+["effort","усилие"],["growth","рост"],
+["result","результат"],["habit","привычка"]
+];
 
-  if(answer === 'goes') {
-    result.innerText = "Correct! 🎉";
-    result.style.color = "green";
-  } else {
-    result.innerText = "Try again ❌";
-    result.style.color = "red";
+let i=0;
+
+function showWord(){
+  document.getElementById("word").innerText =
+    words[i][0] + " — " + words[i][1];
+
+  document.getElementById("progress").innerText =
+    (i+1) + "/" + words.length;
+}
+
+function know(){
+  xp++;
+  next();
+}
+
+function learn(){
+  next();
+}
+
+function next(){
+  i++;
+  if(i<words.length) showWord();
+  else document.getElementById("word").innerText="Done!";
+  updateLevel();
+}
+
+/* QUIZ */
+const quiz = [
+{q:"She ___ to school every day.",a:["go","goes","going"],c:"goes"},
+{q:"They ___ football now.",a:["play","are playing","plays"],c:"are playing"},
+{q:"I ___ English daily.",a:["study","studies","studying"],c:"study"},
+{q:"He ___ TV now.",a:["watch","is watching","watches"],c:"is watching"},
+{q:"We ___ pizza yesterday.",a:["eat","ate","eaten"],c:"ate"},
+{q:"She ___ happy.",a:["is","are","be"],c:"is"}
+];
+
+let qi=0,score=0,time=10,timer;
+
+function startQuiz(){
+  show('quiz');
+  qi=0;score=0;
+  load();
+}
+
+function load(){
+  time=10;
+  runTimer();
+
+  const q=quiz[qi];
+  document.getElementById("question").innerText=q.q;
+
+  const ans=document.getElementById("answers");
+  ans.innerHTML="";
+
+  q.a.forEach(x=>{
+    let b=document.createElement("button");
+    b.innerText=x;
+    b.onclick=()=>select(x);
+    ans.appendChild(b);
+  });
+}
+
+function runTimer(){
+  clearInterval(timer);
+  timer=setInterval(()=>{
+    time--;
+    document.getElementById("timer").innerText="Time: "+time;
+
+    if(time===0){
+      qi++;
+      if(qi<quiz.length) load();
+      else finish();
+    }
+  },1000);
+}
+
+function select(a){
+  if(a===quiz[qi].c){
+    score++;
+    xp++;
   }
+  qi++;
+  if(qi<quiz.length) load();
+  else finish();
+  updateLevel();
 }
+
+function finish(){
+  clearInterval(timer);
+  document.getElementById("question").innerText="Finished!";
+  document.getElementById("answers").innerHTML="";
+  document.getElementById("score").innerText="Score: "+score;
+}
+
+/* LISTENING */
+function openLink(url){
+  window.open(url,'_blank');
+}
+
+/* INIT */
+showWord();
+updateLevel();
 
 </script>
 
 </body>
 </html>
+
