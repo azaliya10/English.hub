@@ -5,75 +5,78 @@
 <title>English Skills Hub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
-/* BODY */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: #333;
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#f0f4ff;
 }
 
 /* HEADER */
-header {
-  text-align: center;
-  padding: 20px;
-  color: white;
-  background: linear-gradient(135deg,#ff758c,#ff7eb3);
+header{
+text-align:center;
+padding:25px;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+color:white;
+}
+
+/* HERO */
+.hero{
+text-align:center;
+padding:20px;
+}
+.hero img{
+width:220px;
+border-radius:20px;
 }
 
 /* GRID */
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 15px;
-  padding: 20px;
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+padding:20px;
 }
 
-.card {
-  padding: 20px;
-  border-radius: 20px;
-  text-align: center;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
+.card{
+padding:20px;
+border-radius:20px;
+text-align:center;
+color:white;
+cursor:pointer;
+font-weight:600;
 }
 
-/* COLORS */
-.grammar { background: #ff758c; }
-.vocab { background: #4facfe; }
-.listening { background: #43e97b; }
-.quiz { background: #f7971e; }
+.grammar{background:#ff6a88;}
+.vocab{background:#36d1dc;}
+.listening{background:#43e97b;}
+.quiz{background:#f7971e;}
 
 /* SECTION */
-.section {
-  display: none;
-  padding: 20px;
-}
-
-.active { display:block; }
+.section{display:none;padding:20px;}
+.active{display:block}
 
 /* BUTTON */
-button {
-  padding:10px;
-  margin:5px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
+button{
+padding:10px;
+margin:6px;
+border:none;
+border-radius:10px;
+cursor:pointer;
 }
 
-/* FIREWORK */
-#firework {
-  position:fixed;
-  top:0;left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
-  color:white;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  font-size:40px;
+/* QUIZ */
+#answers button{
+display:block;
+width:100%;
+margin:10px 0;
+}
+
+#timer{
+font-weight:bold;
+color:#ff4d4d;
 }
 
 </style>
@@ -82,41 +85,69 @@ button {
 <body>
 
 <header>
-<h1>English Skills Hub 🔥</h1>
-<p id="streak">🔥 Streak: 1 day</p>
+<h1>English Skills Hub 🇺🇸</h1>
+<p>Interactive English Learning Platform</p>
 </header>
 
+<div class="hero">
+<img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg">
+</div>
+
 <div class="container">
-  <div class="card grammar" onclick="show('grammar')">Grammar</div>
-  <div class="card vocab" onclick="show('vocab')">Vocabulary</div>
-  <div class="card listening" onclick="show('listening')">Listening</div>
-  <div class="card quiz" onclick="show('quiz')">Quiz</div>
+<div class="card grammar" onclick="show('grammar')">Grammar</div>
+<div class="card vocab" onclick="show('levels')">Vocabulary</div>
+<div class="card listening" onclick="show('listening')">Listening</div>
+<div class="card quiz" onclick="show('quizMenu')">Quiz</div>
 </div>
 
 <!-- GRAMMAR -->
 <div id="grammar" class="section">
-<h2>Grammar Structures</h2>
+<h2>Grammar (All Tenses + Passive)</h2>
 
-<h3>Present Simple</h3>
-<p>Subject + Verb</p>
-<p>Do/Does + Subject + Verb?</p>
-<p>Subject + do/does not + Verb</p>
+<button onclick="toggle('ps')">Present Simple</button>
+<div id="ps" style="display:none">
+<p>Affirmative: Subject + V1</p>
+<p>Negative: Subject + do/does not + V1</p>
+<p>Question: Do/Does + Subject + V1?</p>
+<p>Passive: am/is/are + V3</p>
+</div>
 
-<h3>Present Continuous</h3>
-<p>Subject + am/is/are + Verb+ing</p>
+<button onclick="toggle('pc')">Present Continuous</button>
+<div id="pc" style="display:none">
+<p>Subject + am/is/are + V-ing</p>
+<p>Passive: am/is/are being + V3</p>
+</div>
 
-<h3>Past Simple</h3>
-<p>Subject + Verb2</p>
-
-<h3>Future Simple</h3>
-<p>Subject + will + Verb</p>
-
-<h3>Present Perfect</h3>
+<button onclick="toggle('pp')">Present Perfect</button>
+<div id="pp" style="display:none">
 <p>Subject + have/has + V3</p>
+<p>Passive: have/has been + V3</p>
+</div>
+
+<button onclick="toggle('past')">Past Simple</button>
+<div id="past" style="display:none">
+<p>Subject + V2</p>
+<p>Passive: was/were + V3</p>
+</div>
+
+<button onclick="toggle('future')">Future Simple</button>
+<div id="future" style="display:none">
+<p>Subject + will + V1</p>
+<p>Passive: will be + V3</p>
+</div>
 
 </div>
 
-<!-- VOCAB -->
+<!-- VOCAB LEVELS -->
+<div id="levels" class="section">
+<h2>Choose Level</h2>
+<button onclick="startVocab(0)">Beginner</button>
+<button onclick="startVocab(1)">Elementary</button>
+<button onclick="startVocab(2)">Intermediate</button>
+<button onclick="startVocab(3)">Upper</button>
+<button onclick="startVocab(4)">Advanced</button>
+</div>
+
 <div id="vocab" class="section">
 <h2>Vocabulary</h2>
 <p id="word"></p>
@@ -126,110 +157,162 @@ button {
 
 <!-- LISTENING -->
 <div id="listening" class="section">
-<h2>Listening Levels</h2>
+<h2>Listening</h2>
 
 <h3>Beginner</h3>
-<button onclick="openLink('https://www.youtube.com/results?search_query=Shrek+full+movie+english')">Shrek</button>
-<button onclick="openLink('https://www.youtube.com/results?search_query=Finding+Nemo+english')">Finding Nemo</button>
+<button onclick="openLink('https://www.youtube.com/results?search_query=Shrek+english')">Shrek</button>
+<button onclick="openLink('https://www.youtube.com/results?search_query=Frozen+english')">Frozen</button>
 
 <h3>Intermediate (Nickelodeon)</h3>
 <button onclick="openLink('https://www.youtube.com/results?search_query=Henry+Danger')">Henry Danger</button>
-<button onclick="openLink('https://www.youtube.com/results?search_query=Game+Shakers')">Game Shakers</button>
+<button onclick="openLink('https://www.youtube.com/results?search_query=The+Thundermans')">Thundermans</button>
 
 <h3>Advanced</h3>
 <button onclick="openLink('https://www.youtube.com/results?search_query=TED+Talks')">TED Talks</button>
 <button onclick="openLink('https://www.youtube.com/results?search_query=BBC+documentary')">BBC Documentary</button>
 </div>
 
-<!-- QUIZ -->
-<div id="quiz" class="section">
-<h2>Grammar Quiz</h2>
-<p id="question"></p>
-<div id="answers"></div>
+<!-- QUIZ MENU -->
+<div id="quizMenu" class="section">
+<h2>Select Quiz</h2>
+<button onclick="startQuiz('ps')">Present Simple</button>
+<button onclick="startQuiz('pc')">Present Continuous</button>
+<button onclick="startQuiz('pp')">Present Perfect</button>
+<button onclick="startQuiz('past')">Past Simple</button>
+<button onclick="startQuiz('future')">Future Simple</button>
 </div>
 
-<div id="firework">🎆 Correct! 🎆</div>
+<!-- QUIZ -->
+<div id="quiz" class="section">
+<h2 id="qTitle"></h2>
+<p id="timer"></p>
+<p id="question"></p>
+<div id="answers"></div>
+<p id="result"></p>
+</div>
 
 <script>
 
 /* NAV */
 function show(id){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
 }
 
-/* STREAK */
-let streak=1;
+/* GRAMMAR */
+function toggle(id){
+let el=document.getElementById(id);
+el.style.display=el.style.display==='none'?'block':'none';
+}
 
-/* VOCAB */
-const words=[
-["achieve","достигать"],["improve","улучшать"],["challenge","вызов"],
-["confident","уверенный"],["environment","среда"],
-["opportunity","возможность"],["develop","развивать"],
-["success","успех"],["knowledge","знание"]
+/* VOCAB (100 WORDS SAMPLE SHORTENED) */
+const vocabLevels=[
+Array.from({length:20},(_,i)=>["word"+i,"слово"]),
+Array.from({length:20},(_,i)=>["basic"+i,"слово"]),
+Array.from({length:20},(_,i)=>["intermediate"+i,"слово"]),
+Array.from({length:20},(_,i)=>["upper"+i,"слово"]),
+Array.from({length:20},(_,i)=>["advanced"+i,"слово"])
 ];
 
-let i=0;
+let currentWords=[],vi=0;
+
+function startVocab(level){
+currentWords=vocabLevels[level];
+vi=0;
+show('vocab');
+showWord();
+}
 
 function showWord(){
-  document.getElementById("word").innerText =
-    words[i][0]+" - "+words[i][1];
+document.getElementById("word").innerText=
+currentWords[vi][0]+" - "+currentWords[vi][1];
 }
 
-function know(){ next(); }
-function learn(){ next(); }
+function know(){next();}
+function learn(){next();}
 
 function next(){
-  i=(i+1)%words.length;
-  showWord();
+vi++;
+if(vi<currentWords.length) showWord();
+else alert("Finished!");
 }
 
-/* QUIZ */
-const quiz=[
-{q:"She ___ to school.",a:["go","goes"],c:"goes"},
-{q:"They ___ playing.",a:["are","is"],c:"are"}
-];
+/* QUIZ DATA (пример, можно расширить до 12 блоков) */
+const quizzes={
+ps:[
+{q:"She ___ to school.",a:["go","goes","going","gone"],c:"goes"},
+{q:"I ___ coffee.",a:["like","likes","liked","liking"],c:"like"}
+]
+};
 
-let qi=0;
+let currentQuiz=[],qi=0,score=0,time=10,timer;
 
+/* START QUIZ */
+function startQuiz(type){
+show('quiz');
+currentQuiz=quizzes[type];
+qi=0;score=0;
+loadQ();
+}
+
+/* LOAD */
 function loadQ(){
-  let q=quiz[qi];
-  document.getElementById("question").innerText=q.q;
+time=10;
+runTimer();
 
-  let ans=document.getElementById("answers");
-  ans.innerHTML="";
+let q=currentQuiz[qi];
+document.getElementById("question").innerText=q.q;
 
-  q.a.forEach(x=>{
-    let b=document.createElement("button");
-    b.innerText=x;
-    b.onclick=()=>select(x);
-    ans.appendChild(b);
-  });
+let ans=document.getElementById("answers");
+ans.innerHTML="";
+
+q.a.forEach(x=>{
+let b=document.createElement("button");
+b.innerText=x;
+b.onclick=()=>select(x);
+ans.appendChild(b);
+});
 }
 
+/* TIMER */
+function runTimer(){
+clearInterval(timer);
+timer=setInterval(()=>{
+time--;
+document.getElementById("timer").innerText="Time: "+time;
+if(time<=0){
+qi++;
+if(qi<currentQuiz.length) loadQ();
+else finish();
+}
+},1000);
+}
+
+/* ANSWER */
 function select(a){
-  if(a===quiz[qi].c){
-    showFirework();
-  }
-  qi=(qi+1)%quiz.length;
-  loadQ();
+if(a===currentQuiz[qi].c){
+document.getElementById("result").innerText="Correct";
+score++;
+}else{
+document.getElementById("result").innerText="Wrong";
 }
 
-/* FIREWORK */
-function showFirework(){
-  let f=document.getElementById("firework");
-  f.style.display="flex";
-  setTimeout(()=>f.style.display="none",1000);
+qi++;
+if(qi<currentQuiz.length) loadQ();
+else finish();
+}
+
+/* FINISH */
+function finish(){
+clearInterval(timer);
+document.getElementById("question").innerText="Final Score: "+score;
+document.getElementById("answers").innerHTML="";
 }
 
 /* LINKS */
 function openLink(url){
-  window.open(url,'_blank');
+window.open(url,'_blank');
 }
-
-/* INIT */
-showWord();
-loadQ();
 
 </script>
 
