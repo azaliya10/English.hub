@@ -3,220 +3,199 @@
 <head>
   <meta charset="UTF-8">
   <title>English Skills Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    /* ====== CSS ====== */
     body {
-      background: linear-gradient(135deg, #ffe0f5, #ffd1ec);
-      font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #6C63FF, #48C6EF);
       color: #333;
     }
 
-    h1, h2 {
+    header {
       text-align: center;
-      font-weight: 800;
-      color: #d81b60;
-      margin-top: 20px;
+      padding: 30px;
+      color: white;
     }
 
-    nav {
-      text-align: center;
-      margin: 20px 0;
+    h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
     }
 
     button {
-      background: #ff80ab;
+      margin-top: 10px;
+      padding: 10px 15px;
       border: none;
-      padding: 12px 24px;
-      margin: 5px;
+      border-radius: 10px;
+      background: #6C63FF;
       color: white;
-      font-weight: bold;
-      font-size: 16px;
-      border-radius: 15px;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      background: #5548d9;
     }
 
-    section {
-      margin: 20px auto;
+    .hidden {
+      display: none;
+    }
+
+    .section {
       padding: 20px;
-      max-width: 900px;
+      background: white;
+      margin: 20px;
+      border-radius: 20px;
     }
 
-    section ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      padding: 0;
-      list-style: none;
-      justify-content: center;
-    }
-
-    section ul li {
-      background: #fff;
-      padding: 15px;
-      width: 250px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      font-size: 16px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-    }
-
-    section ul li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    a {
-      text-decoration: none;
-      color: #c2185b;
+    .quiz-result {
       font-weight: bold;
+      margin-top: 10px;
     }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .hidden { display: none; }
-
   </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>English Skills Hub</h1>
-    <nav>
-      <button onclick="showSection('grammar')">Grammar</button>
-      <button onclick="showSection('vocabulary')">Vocabulary</button>
-      <button onclick="showSection('speaking')">Speaking</button>
-      <button onclick="showSection('listening')">Listening</button>
-      <button onclick="showSection('quiz')">Quiz</button>
-    </nav>
-  </header>
+<header>
+  <h1>English Skills Hub</h1>
+  <p>Improve your English in a fun and interactive way 🎯</p>
+</header>
 
-  <!-- Sections -->
-  <section id="grammar" class="hidden">
-    <h2>Grammar: All Tenses</h2>
-    <ul id="grammar-tips"></ul>
-  </section>
+<div class="container">
 
-  <section id="vocabulary" class="hidden">
-    <h2>Vocabulary</h2>
-    <ul id="vocabulary-list"></ul>
-  </section>
+  <div class="card" onclick="showSection('grammar')">
+    <h2>📘 Grammar</h2>
+    <p>Learn structures and rules</p>
+  </div>
 
-  <section id="speaking" class="hidden">
-    <h2>Speaking Practice</h2>
-    <ul id="speaking-tips"></ul>
-  </section>
+  <div class="card" onclick="showSection('vocab')">
+    <h2>🧠 Vocabulary</h2>
+    <p>Expand your word bank</p>
+  </div>
 
-  <section id="listening" class="hidden">
-    <h2>Listening Practice</h2>
-    <ul id="listening-tips"></ul>
-  </section>
+  <div class="card" onclick="showSection('speaking')">
+    <h2>🗣 Speaking</h2>
+    <p>Practice real conversations</p>
+  </div>
 
-  <section id="quiz" class="hidden">
-    <h2>Quiz</h2>
-    <div id="quiz-container"></div>
-  </section>
+  <div class="card" onclick="showSection('listening')">
+    <h2>🎧 Listening</h2>
+    <p>Podcasts & cartoons</p>
+  </div>
 
-  <script>
-    // ====== JavaScript ======
-    const grammarTips = [
-      "Present Simple: I play / He plays",
-      "Present Continuous: I am playing",
-      "Present Perfect: I have played",
-      "Past Simple: I played",
-      "Past Continuous: I was playing",
-      "Past Perfect: I had played",
-      "Future Simple: I will play",
-      "Future Continuous: I will be playing"
-    ];
+  <div class="card" onclick="showSection('quiz')">
+    <h2>🎯 Quiz</h2>
+    <p>Test your knowledge</p>
+  </div>
 
-    const vocabulary = [
-      {word: "Innovative", meaning: "Creative, introducing new ideas."},
-      {word: "Achieve", meaning: "Successfully reach a goal."},
-      {word: "Challenge", meaning: "A difficult task."},
-      {word: "Flexible", meaning: "Able to adapt easily."},
-      {word: "Confidence", meaning: "Belief in yourself."},
-      {word: "Motivate", meaning: "To give someone reason to act."},
-      {word: "Goal", meaning: "The aim or desired result."},
-      {word: "Focus", meaning: "Pay attention to one thing."},
-      {word: "Success", meaning: "Achieving what you want."}
-    ];
+</div>
 
-    const speakingTips = [
-      "Practice speaking every day.",
-      "Record yourself and listen.",
-      "Speak slowly and clearly.",
-      "Use new vocabulary in sentences.",
-      "Try tongue twisters to improve pronunciation."
-    ];
+<!-- GRAMMAR -->
+<div id="grammar" class="section hidden">
+  <h2>Present Simple</h2>
 
-    const listeningTips = [
-      {title: "BBC Learning English", link: "https://www.youtube.com/user/bbclearningenglish"},
-      {title: "English Addict with Mr Steve", link: "https://www.youtube.com/watch?v=nm7h6QqP3jQ"},
-      {title: "Learn English with Movies", link: "https://www.youtube.com/watch?v=U7u1w7RVkYs"}
-    ];
+  <p><b>Structure:</b></p>
+  <p>✔ Subject + Verb → I play</p>
+  <p>✔ Question → Do/Does + Subject + Verb?</p>
+  <p>✔ Negative → Subject + do/does not + Verb</p>
 
-    const quizQuestions = [
-      {q: "Present Simple: I ___ to school every day", a: "go"},
-      {q: "Past Simple: Yesterday I ___ a movie", a: "watched"},
-      {q: "Future Simple: Tomorrow I ___ a book", a: "will read"},
-      {q: "Vocabulary: opposite of 'failure'", a: "success"}
-    ];
+  <p><b>Examples:</b></p>
+  <p>I study English every day.</p>
+  <p>Do you like pizza?</p>
+  <p>She does not play tennis.</p>
+</div>
 
-    function showSection(id) {
-      const sections = document.querySelectorAll("section");
-      sections.forEach(sec => sec.classList.add("hidden"));
-      document.getElementById(id).classList.remove("hidden");
+<!-- VOCAB -->
+<div id="vocab" class="section hidden">
+  <h2>Vocabulary</h2>
+  <p>Learn new words daily:</p>
+  <ul>
+    <li>Ambitious – /æmˈbɪʃəs/ – having goals</li>
+    <li>Improve – /ɪmˈpruːv/ – get better</li>
+    <li>Skill – /skɪl/ – ability</li>
+  </ul>
+</div>
 
-      if(id === "grammar") displayList("grammar-tips", grammarTips);
-      if(id === "vocabulary") displayVocabulary();
-      if(id === "speaking") displayList("speaking-tips", speakingTips);
-      if(id === "listening") displayListening();
-      if(id === "quiz") displayQuiz();
-    }
+<!-- SPEAKING -->
+<div id="speaking" class="section hidden">
+  <h2>Speaking Practice</h2>
+  <p>Try answering:</p>
+  <ul>
+    <li>What do you do in your free time?</li>
+    <li>Why do you learn English?</li>
+  </ul>
+</div>
 
-    function displayList(elementId, array){
-      const container = document.getElementById(elementId);
-      container.innerHTML = array.map(item => `<li>${item}</li>`).join("");
-    }
+<!-- LISTENING -->
+<div id="listening" class="section hidden">
+  <h2>Listening Topics</h2>
 
-    function displayVocabulary(){
-      const container = document.getElementById("vocabulary-list");
-      container.innerHTML = vocabulary.map(item => `<li><b>${item.word}</b>: ${item.meaning}</li>`).join("");
-    }
+  <button onclick="openLink('https://www.youtube.com/results?search_query=english+podcast')">Podcasts</button>
+  <button onclick="openLink('https://www.youtube.com/results?search_query=english+cartoons')">Cartoons</button>
 
-    function displayListening(){
-      const container = document.getElementById("listening-tips");
-      container.innerHTML = listeningTips.map(item => 
-        `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`).join("");
-    }
+</div>
 
-    function displayQuiz(){
-      const container = document.getElementById("quiz-container");
-      let score = 0;
-      container.innerHTML = "";
-      quizQuestions.forEach((q,i)=>{
-        const answer = prompt(`${i+1}. ${q.q}`);
-        if(answer && answer.trim().toLowerCase() === q.a.toLowerCase()){
-          alert("✅ Correct!");
-          score++;
-        } else {
-          alert(`❌ Wrong! Correct answer: ${q.a}`);
-        }
-      });
-      alert(`Your score: ${score}/${quizQuestions.length}`);
-    }
+<!-- QUIZ -->
+<div id="quiz" class="section hidden">
+  <h2>Mini Quiz</h2>
 
-  </script>
+  <p>Choose correct answer:</p>
+  <p>She ___ to school every day.</p>
+
+  <button onclick="checkAnswer('goes')">goes</button>
+  <button onclick="checkAnswer('go')">go</button>
+
+  <p id="result" class="quiz-result"></p>
+</div>
+
+<script>
+
+function showSection(id) {
+  const sections = document.querySelectorAll('.section');
+  sections.forEach(sec => sec.classList.add('hidden'));
+
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function openLink(url) {
+  window.open(url, '_blank');
+}
+
+function checkAnswer(answer) {
+  const result = document.getElementById('result');
+
+  if(answer === 'goes') {
+    result.innerText = "Correct! 🎉";
+    result.style.color = "green";
+  } else {
+    result.innerText = "Try again ❌";
+    result.style.color = "red";
+  }
+}
+
+</script>
+
 </body>
 </html>
