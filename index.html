@@ -7,86 +7,73 @@
 
 <style>
 
-/* BACKGROUND */
+/* BODY */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
-  color: white;
+  color: #333;
 }
 
 /* HEADER */
 header {
   text-align: center;
   padding: 20px;
+  color: white;
+  background: linear-gradient(135deg,#ff758c,#ff7eb3);
 }
 
 /* GRID */
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
   gap: 15px;
   padding: 20px;
 }
 
-/* CARD */
 .card {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 20px;
   text-align: center;
+  color: white;
   cursor: pointer;
-  transition: 0.3s;
+  font-weight: bold;
 }
 
-.card:hover {
-  transform: scale(1.05);
-}
+/* COLORS */
+.grammar { background: #ff758c; }
+.vocab { background: #4facfe; }
+.listening { background: #43e97b; }
+.quiz { background: #f7971e; }
 
 /* SECTION */
 .section {
   display: none;
-  margin: 20px;
   padding: 20px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 20px;
 }
 
-.active { display: block; }
+.active { display:block; }
 
 /* BUTTON */
 button {
-  padding: 10px;
-  margin: 5px;
-  border-radius: 10px;
-  border: none;
-  background: #6c63ff;
-  color: white;
-  cursor: pointer;
+  padding:10px;
+  margin:5px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
 }
 
-button:hover {
-  background: #5848d6;
-}
-
-/* QUIZ */
-#answers button {
-  display: block;
-  width: 100%;
-}
-
-/* FLASHCARD */
-.flashcard {
-  text-align: center;
-  font-size: 24px;
-  margin: 20px;
-}
-
-/* LEVEL */
-.level {
-  text-align: center;
-  margin-top: 10px;
+/* FIREWORK */
+#firework {
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  color:white;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  font-size:40px;
 }
 
 </style>
@@ -95,57 +82,73 @@ button:hover {
 <body>
 
 <header>
-<h1>English Skills Hub 🚀</h1>
-<p>Level up your English like a game 🎮</p>
-<div class="level" id="level"></div>
+<h1>English Skills Hub 🔥</h1>
+<p id="streak">🔥 Streak: 1 day</p>
 </header>
 
 <div class="container">
-  <div class="card" onclick="show('grammar')">📘 Grammar</div>
-  <div class="card" onclick="show('vocab')">🧠 Vocabulary</div>
-  <div class="card" onclick="show('listening')">🎧 Listening</div>
-  <div class="card" onclick="startQuiz()">🎯 Quiz</div>
+  <div class="card grammar" onclick="show('grammar')">Grammar</div>
+  <div class="card vocab" onclick="show('vocab')">Vocabulary</div>
+  <div class="card listening" onclick="show('listening')">Listening</div>
+  <div class="card quiz" onclick="show('quiz')">Quiz</div>
 </div>
 
 <!-- GRAMMAR -->
 <div id="grammar" class="section">
-<h2>Present Simple</h2>
-<p>✔ Subject + Verb → I play</p>
-<p>✔ Question → Do/Does + Subject + Verb?</p>
-<p>✔ Negative → Subject + do/does not + Verb</p>
+<h2>Grammar Structures</h2>
+
+<h3>Present Simple</h3>
+<p>Subject + Verb</p>
+<p>Do/Does + Subject + Verb?</p>
+<p>Subject + do/does not + Verb</p>
+
+<h3>Present Continuous</h3>
+<p>Subject + am/is/are + Verb+ing</p>
+
+<h3>Past Simple</h3>
+<p>Subject + Verb2</p>
+
+<h3>Future Simple</h3>
+<p>Subject + will + Verb</p>
+
+<h3>Present Perfect</h3>
+<p>Subject + have/has + V3</p>
+
 </div>
 
 <!-- VOCAB -->
 <div id="vocab" class="section">
-<h2>Vocabulary Trainer</h2>
-<div class="flashcard" id="word"></div>
+<h2>Vocabulary</h2>
+<p id="word"></p>
 <button onclick="know()">I know</button>
 <button onclick="learn()">Learn</button>
-<p id="progress"></p>
 </div>
 
 <!-- LISTENING -->
 <div id="listening" class="section">
-<h2>Listening 🎧</h2>
+<h2>Listening Levels</h2>
 
-<h3>A1-A2</h3>
-<button onclick="openLink('https://www.youtube.com/watch?v=H9SmU2qR0lE')">Cartoon</button>
+<h3>Beginner</h3>
+<button onclick="openLink('https://www.youtube.com/results?search_query=Shrek+full+movie+english')">Shrek</button>
+<button onclick="openLink('https://www.youtube.com/results?search_query=Finding+Nemo+english')">Finding Nemo</button>
 
-<h3>B1-B2</h3>
-<button onclick="openLink('https://www.youtube.com/watch?v=O6Xo21L0ybE')">Podcast</button>
+<h3>Intermediate (Nickelodeon)</h3>
+<button onclick="openLink('https://www.youtube.com/results?search_query=Henry+Danger')">Henry Danger</button>
+<button onclick="openLink('https://www.youtube.com/results?search_query=Game+Shakers')">Game Shakers</button>
 
-<h3>C1</h3>
-<button onclick="openLink('https://www.youtube.com/watch?v=8jPQjjsBbIc')">Movie</button>
+<h3>Advanced</h3>
+<button onclick="openLink('https://www.youtube.com/results?search_query=TED+Talks')">TED Talks</button>
+<button onclick="openLink('https://www.youtube.com/results?search_query=BBC+documentary')">BBC Documentary</button>
 </div>
 
 <!-- QUIZ -->
 <div id="quiz" class="section">
-<h2>Quiz 🎯</h2>
-<p id="timer"></p>
+<h2>Grammar Quiz</h2>
 <p id="question"></p>
 <div id="answers"></div>
-<p id="score"></p>
 </div>
+
+<div id="firework">🎆 Correct! 🎆</div>
 
 <script>
 
@@ -155,81 +158,45 @@ function show(id){
   document.getElementById(id).classList.add('active');
 }
 
-/* LEVEL SYSTEM */
-let xp = 0;
-
-function updateLevel(){
-  let level = "Beginner";
-  if(xp > 5) level = "Intermediate";
-  if(xp > 10) level = "Advanced";
-
-  document.getElementById("level").innerText = "XP: " + xp + " | " + level;
-}
+/* STREAK */
+let streak=1;
 
 /* VOCAB */
-const words = [
-["achieve","достигать"],["improve","улучшать"],["skill","навык"],
-["challenge","вызов"],["confident","уверенный"],
-["opportunity","возможность"],["experience","опыт"],
-["develop","развивать"],["success","успех"],
-["goal","цель"],["knowledge","знание"],
-["practice","практика"],["focus","фокус"],
-["effort","усилие"],["growth","рост"],
-["result","результат"],["habit","привычка"]
+const words=[
+["achieve","достигать"],["improve","улучшать"],["challenge","вызов"],
+["confident","уверенный"],["environment","среда"],
+["opportunity","возможность"],["develop","развивать"],
+["success","успех"],["knowledge","знание"]
 ];
 
 let i=0;
 
 function showWord(){
   document.getElementById("word").innerText =
-    words[i][0] + " — " + words[i][1];
-
-  document.getElementById("progress").innerText =
-    (i+1) + "/" + words.length;
+    words[i][0]+" - "+words[i][1];
 }
 
-function know(){
-  xp++;
-  next();
-}
-
-function learn(){
-  next();
-}
+function know(){ next(); }
+function learn(){ next(); }
 
 function next(){
-  i++;
-  if(i<words.length) showWord();
-  else document.getElementById("word").innerText="Done!";
-  updateLevel();
+  i=(i+1)%words.length;
+  showWord();
 }
 
 /* QUIZ */
-const quiz = [
-{q:"She ___ to school every day.",a:["go","goes","going"],c:"goes"},
-{q:"They ___ football now.",a:["play","are playing","plays"],c:"are playing"},
-{q:"I ___ English daily.",a:["study","studies","studying"],c:"study"},
-{q:"He ___ TV now.",a:["watch","is watching","watches"],c:"is watching"},
-{q:"We ___ pizza yesterday.",a:["eat","ate","eaten"],c:"ate"},
-{q:"She ___ happy.",a:["is","are","be"],c:"is"}
+const quiz=[
+{q:"She ___ to school.",a:["go","goes"],c:"goes"},
+{q:"They ___ playing.",a:["are","is"],c:"are"}
 ];
 
-let qi=0,score=0,time=10,timer;
+let qi=0;
 
-function startQuiz(){
-  show('quiz');
-  qi=0;score=0;
-  load();
-}
-
-function load(){
-  time=10;
-  runTimer();
-
-  const q=quiz[qi];
+function loadQ(){
+  let q=quiz[qi];
   document.getElementById("question").innerText=q.q;
 
-  const ans=document.getElementById("answers");
+  let ans=document.getElementById("answers");
   ans.innerHTML="";
 
   q.a.forEach(x=>{
@@ -240,49 +207,31 @@ function load(){
   });
 }
 
-function runTimer(){
-  clearInterval(timer);
-  timer=setInterval(()=>{
-    time--;
-    document.getElementById("timer").innerText="Time: "+time;
-
-    if(time===0){
-      qi++;
-      if(qi<quiz.length) load();
-      else finish();
-    }
-  },1000);
-}
-
 function select(a){
   if(a===quiz[qi].c){
-    score++;
-    xp++;
+    showFirework();
   }
-  qi++;
-  if(qi<quiz.length) load();
-  else finish();
-  updateLevel();
+  qi=(qi+1)%quiz.length;
+  loadQ();
 }
 
-function finish(){
-  clearInterval(timer);
-  document.getElementById("question").innerText="Finished!";
-  document.getElementById("answers").innerHTML="";
-  document.getElementById("score").innerText="Score: "+score;
+/* FIREWORK */
+function showFirework(){
+  let f=document.getElementById("firework");
+  f.style.display="flex";
+  setTimeout(()=>f.style.display="none",1000);
 }
 
-/* LISTENING */
+/* LINKS */
 function openLink(url){
   window.open(url,'_blank');
 }
 
 /* INIT */
 showWord();
-updateLevel();
+loadQ();
 
 </script>
 
 </body>
 </html>
-
