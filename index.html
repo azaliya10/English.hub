@@ -6,32 +6,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
 <style>
-/* Основные стили */
-body {margin:0; font-family:'Poppins',sans-serif; background:#f0f4ff;}
-header{padding:30px; text-align:center; background:linear-gradient(135deg,#4facfe,#00f2fe); color:white;}
-header h1{font-size:2.8em;}
-header p{font-size:1.2em;}
+/* ---- Базовые стили ---- */
+body {margin:0; font-family:'Poppins',sans-serif; background:#111; color:#fff;}
+header{padding:30px; text-align:center; background:linear-gradient(135deg,#1f1c2c,#928dab);}
+header h1{font-size:2.8em; color:#ffce00;}
+header p{font-size:1.2em; color:#fff;}
 .container{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:20px;}
-.card{padding:35px;border-radius:25px;text-align:center;color:white;cursor:pointer;font-weight:800; font-size:1.2em; transition: transform 0.3s, box-shadow 0.3s;}
-.card:hover{transform: scale(1.05); box-shadow:0 10px 20px rgba(0,0,0,0.2);}
-.grammar{background:#ff6a88;}
-.vocab{background:#36d1dc;}
-.listening{background:#43e97b;}
-.quiz{background:#f7971e;}
+.card{padding:35px;border-radius:25px;text-align:center;cursor:pointer;font-weight:800; font-size:1.2em; transition: transform 0.3s, box-shadow 0.3s; background:linear-gradient(135deg,#ff416c,#ff4b2b);}
+.card:hover{transform: scale(1.05); box-shadow:0 10px 20px rgba(0,0,0,0.5);}
+.grammar{background:linear-gradient(135deg,#ff416c,#ff4b2b);}
+.vocab{background:linear-gradient(135deg,#36d1dc,#5b86e5);}
+.listening{background:linear-gradient(135deg,#43e97b,#38f9d7);}
+.quiz{background:linear-gradient(135deg,#f7971e,#ffd200);}
 .section{display:none;padding:30px;text-align:center; animation:fadeIn 0.5s;}
 .active{display:block;}
-button{padding:15px 25px;margin:12px;border:none;border-radius:15px;cursor:pointer;font-size:1.1em; transition:0.3s;}
-button:hover{opacity:0.85;}
-#answers button{display:block;width:80%;margin:12px auto;}
+button{padding:15px 25px;margin:12px;border:none;border-radius:15px;cursor:pointer;font-size:1.1em; transition:0.3s; background:#222; color:#fff;}
+button:hover{opacity:0.85; background:#555;}
+#answers button{display:block;width:80%;margin:12px;}
 #timer{font-weight:bold;color:#ff4d4d;font-size:1.5em;margin:15px;}
 #word{font-size:2em;margin:20px 0;}
 h2{font-size:2.2em; margin-bottom:25px;}
 .listening-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;}
-.listen-card{cursor:pointer;border-radius:15px;overflow:hidden;transition:0.3s; text-align:center; color:black; background:white;}
+.listen-card{cursor:pointer;border-radius:15px;overflow:hidden;transition:0.3s; text-align:center; color:black; background:#222;}
 .listen-card img{width:100%; display:block; border-radius:15px;}
-.listen-card p{padding:8px;font-weight:600;}
-.listen-card:hover{transform:scale(1.05); box-shadow:0 8px 15px rgba(0,0,0,0.2);}
-.result{font-size:2em;font-weight:700;margin:20px;}
+.listen-card p{padding:8px;font-weight:600; color:#fff;}
+.listen-card:hover{transform:scale(1.05); box-shadow:0 8px 15px rgba(0,0,0,0.5);}
+.result{font-size:2em;font-weight:700;margin:20px;color:#ffce00;}
 @keyframes fadeIn {from{opacity:0;}to{opacity:1;}}
 </style>
 </head>
@@ -52,7 +52,6 @@ h2{font-size:2.2em; margin-bottom:25px;}
 <!-- GRAMMAR -->
 <div id="grammar" class="section">
 <h2>Grammar (Click a tense to view structure)</h2>
-
 <button onclick="toggleGrammar('ps')">Present Simple</button>
 <div id="ps" style="display:none;font-size:1.5em;">
 Affirmative: Subject + V1<br>
@@ -60,7 +59,6 @@ Negative: Subject + do/does not + V1<br>
 Question: Do/Does + Subject + V1?<br>
 Passive: am/is/are + V3
 </div>
-
 <button onclick="toggleGrammar('pc')">Present Continuous</button>
 <div id="pc" style="display:none;font-size:1.5em;">
 Affirmative: Subject + am/is/are + V-ing<br>
@@ -68,7 +66,6 @@ Negative: Subject + am/is/are not + V-ing<br>
 Question: Am/Is/Are + Subject + V-ing?<br>
 Passive: am/is/are being + V3
 </div>
-
 <button onclick="toggleGrammar('pp')">Present Perfect</button>
 <div id="pp" style="display:none;font-size:1.5em;">
 Affirmative: Subject + have/has + V3<br>
@@ -76,7 +73,6 @@ Negative: Subject + have/has not + V3<br>
 Question: Have/Has + Subject + V3?<br>
 Passive: have/has been + V3
 </div>
-
 <button onclick="toggleGrammar('psp')">Past Simple</button>
 <div id="psp" style="display:none;font-size:1.5em;">
 Affirmative: Subject + V2<br>
@@ -84,7 +80,6 @@ Negative: Subject + did not + V1<br>
 Question: Did + Subject + V1?<br>
 Passive: was/were + V3
 </div>
-
 <button onclick="toggleGrammar('pcp')">Past Continuous</button>
 <div id="pcp" style="display:none;font-size:1.5em;">
 Affirmative: Subject + was/were + V-ing<br>
@@ -92,7 +87,6 @@ Negative: Subject + was/were not + V-ing<br>
 Question: Was/Were + Subject + V-ing?<br>
 Passive: was/were being + V3
 </div>
-
 <button onclick="toggleGrammar('ppp')">Past Perfect</button>
 <div id="ppp" style="display:none;font-size:1.5em;">
 Affirmative: Subject + had + V3<br>
@@ -100,7 +94,6 @@ Negative: Subject + had not + V3<br>
 Question: Had + Subject + V3?<br>
 Passive: had been + V3
 </div>
-
 <button onclick="toggleGrammar('fps')">Future Simple</button>
 <div id="fps" style="display:none;font-size:1.5em;">
 Affirmative: Subject + will + V1<br>
@@ -108,15 +101,13 @@ Negative: Subject + will not + V1<br>
 Question: Will + Subject + V1?<br>
 Passive: will be + V3
 </div>
-
 <button onclick="toggleGrammar('fpp')">Future Perfect</button>
 <div id="fpp" style="display:none;font-size:1.5em;">
 Affirmative: Subject + will have + V3<br>
-Negative: Subject + will not have + V3<br>
+Negative: Subject + will not + V3<br>
 Question: Will + Subject + have + V3?<br>
 Passive: will have been + V3
 </div>
-
 <button onclick="toggleGrammar('ppc')">Present Perfect Continuous</button>
 <div id="ppc" style="display:none;font-size:1.5em;">
 Affirmative: Subject + have/has been + V-ing<br>
@@ -124,7 +115,6 @@ Negative: Subject + have/has not been + V-ing<br>
 Question: Have/Has + Subject + been + V-ing?<br>
 Passive: have/has been being + V3
 </div>
-
 <button onclick="toggleGrammar('fpc')">Future Perfect Continuous</button>
 <div id="fpc" style="display:none;font-size:1.5em;">
 Affirmative: Subject + will have been + V-ing<br>
@@ -132,10 +122,9 @@ Negative: Subject + will not have been + V-ing<br>
 Question: Will + Subject + have been + V-ing?<br>
 Passive: will have been being + V3
 </div>
-
 </div>
 
-<!-- VOCAB LEVELS -->
+<!-- VOCABULARY LEVELS -->
 <div id="levels" class="section">
 <h2>Vocabulary Levels</h2>
 <button onclick="startVocab(0)">Beginner</button>
@@ -207,117 +196,50 @@ Passive: will have been being + V3
 </div>
 
 <script>
-// NAVIGATION
+// ---- Навигация ----
 function showSection(id){
 document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
 document.getElementById(id).classList.add('active');
 window.scrollTo(0,0);
 }
 
-// GRAMMAR TOGGLE
+// ---- Grammar Toggle ----
 function toggleGrammar(id){
 let el=document.getElementById(id);
 el.style.display=el.style.display==='none'?'block':'none';
 }
 
-// VOCABULARY
+// ---- Vocabulary ----
 const vocabLevels=[
-[["cat","кот"],["dog","собака"],["apple","яблоко"],["house","дом"],["book","книга"],["pen","ручка"],["table","стол"],["chair","стул"],["sun","солнце"],["moon","луна"],["water","вода"],["milk","молоко"],["friend","друг"],["family","семья"],["school","школа"],["car","машина"],["bird","птица"],["tree","дерево"],["shoe","обувь"],["hat","шляпа"]],
-[["teacher","учитель"],["student","ученик"],["classroom","класс"],["bag","сумка"],["computer","компьютер"],["phone","телефон"],["window","окно"],["door","дверь"],["food","еда"],["drink","напиток"],["city","город"],["street","улица"],["park","парк"],["river","река"],["mountain","гора"],["lake","озеро"],["dog","собака"],["cat","кот"],["friend","друг"],["family","семья"],["book","книга"]],
-[["achieve","достигать"],["improve","улучшать"],["develop","развивать"],["analyze","анализировать"],["decide","решать"],["create","создавать"],["study","изучать"],["understand","понимать"],["increase","увеличивать"],["explore","исследовать"],["challenge","вызов"],["discover","открывать"],["organize","организовать"],["focus","сосредоточиться"],["perform","выполнять"],["practice","практиковать"],["communicate","общаться"],["express","выражать"],["explain","объяснять"],["participate","участвовать"]],
-[["analyze","анализировать"],["evaluate","оценивать"],["interpret","интерпретировать"],["research","исследовать"],["illustrate","иллюстрировать"],["synthesize","синтезировать"],["transform","преобразовывать"],["reflect","размышлять"],["construct","строить"],["justify","оправдывать"],["hypothesize","гипотезировать"],["formulate","формулировать"],["debate","дискутировать"],["predict","предсказывать"],["differentiate","различать"],["assess","оценивать"],["investigate","исследовать"],["integrate","интегрировать"],["prioritize","приоритизировать"],["collaborate","сотрудничать"]],
-[["sophisticated","сложный"],["significant","значительный"],["complex","сложный"],["innovative","инновационный"],["advanced","продвинутый"],["efficient","эффективный"],["strategic","стратегический"],["comprehensive","всеобъемлющий"],["analytical","аналитический"],["critical","критический"],["creative","творческий"],["exceptional","исключительный"],["precise","точный"],["extensive","широкий"],["dynamic","динамический"],["systematic","систематический"],["proficient","профессиональный"],["versatile","универсальный"],["insightful","проницательный"],["collaborative","сотрудничающий"]]
+[["cat","кот"],["dog","собака"],["apple","яблоко"],["house","дом"],["book","книга"]],
+[["teacher","учитель"],["student","ученик"],["classroom","класс"],["bag","сумка"],["computer","компьютер"]],
+[["achieve","достигать"],["improve","улучшать"],["develop","развивать"],["analyze","анализировать"],["decide","решать"]],
+[["analyze","анализировать"],["evaluate","оценивать"],["research","исследовать"],["illustrate","иллюстрировать"],["synthesize","синтезировать"]],
+[["sophisticated","сложный"],["significant","значительный"],["complex","сложный"],["innovative","инновационный"],["advanced","продвинутый"]]
 ];
-
 let currentWords=[],vi=0;
-
-function startVocab(level){
-currentWords=vocabLevels[level];
-vi=0;
-showSection('vocab');
-showWord();
-}
-
-function showWord(){
-document.getElementById("word").innerText=currentWords[vi][0]+" - "+currentWords[vi][1];
-}
-
+function startVocab(level){currentWords=vocabLevels[level];vi=0;showSection('vocab');showWord();}
+function showWord(){document.getElementById("word").innerText=currentWords[vi][0]+" - "+currentWords[vi][1];}
 function know(){nextWord();}
 function learn(){nextWord();}
+function nextWord(){vi++;if(vi<currentWords.length) showWord();else alert("Finished Level!");}
 
-function nextWord(){
-vi++;
-if(vi<currentWords.length) showWord();
-else alert("Finished Level!");
-}
-
-// LISTENING
+// ---- Listening ----
 function openLink(url){window.open(url,'_blank');}
 
-// QUIZ DATA EXAMPLE (FULL 12 TENSES можно расширить)
+// ---- Quiz ----
 const quizzes={
 ps:[{q:"She ___ to school.",a:["go","goes","going","gone"],c:"goes"}],
 pc:[{q:"I ___ now.",a:["am working","work","works","worked"],c:"am working"}],
-pp:[{q:"They ___ their homework.",a:["have done","did","do","done"],c:"have done"}],
-psp:[{q:"He ___ yesterday.",a:["went","goes","gone","going"],c:"went"}],
-pcp:[{q:"We ___ at 8pm.",a:["were playing","played","play","playing"],c:"were playing"}],
-ppp:[{q:"She ___ before I arrived.",a:["had left","left","leaves","leave"],c:"had left"}],
-fps:[{q:"I ___ tomorrow.",a:["will go","go","went","going"],c:"will go"}],
-fpp:[{q:"They ___ by next year.",a:["will have finished","finished","finish","finishing"],c:"will have finished"}],
-ppc:[{q:"He ___ for 2 hours.",a:["has been studying","studied","studies","study"],c:"has been studying"}],
-fpc:[{q:"We ___ for 3 hours by noon.",a:["will have been working","work","worked","working"],c:"will have been working"}]
+pp:[{q:"They ___ their homework.",a:["have done","did","do","done"],c:"have done"}]
 };
-
 let currentQuiz=[],qi=0,score=0,time=10,timer;
+function startQuiz(type){showSection('quiz');currentQuiz=quizzes[type];qi=0;score=0;loadQ();}
+function loadQ(){time=10;document.getElementById("result").innerText="";runTimer();let q=currentQuiz[qi];document.getElementById("question").innerText=q.q;let ans=document.getElementById("answers");ans.innerHTML="";q.a.forEach(x=>{let b=document.createElement("button");b.innerText=x;b.onclick=()=>selectAnswer(x);ans.appendChild(b);});}
+function runTimer(){clearInterval(timer);timer=setInterval(()=>{time--;document.getElementById("timer").innerText="Time: "+time;if(time<=0){nextQ();}},1000);}
+function selectAnswer(a){clearInterval(timer);if(a===currentQuiz[qi].c){document.getElementById("result").innerText="Correct";score++;}else{document.getElementById("result").innerText="Wrong. Correct: "+currentQuiz[qi].c;}setTimeout(nextQ,1000);}
+function nextQ(){qi++;if(qi<currentQuiz.length){loadQ();}else{document.getElementById("result").innerText="Quiz Finished! Score: "+score+"/"+currentQuiz.length;}}
 
-function startQuiz(type){
-showSection('quiz');
-currentQuiz=quizzes[type];
-qi=0;score=0;
-loadQ();
-}
-
-function loadQ(){
-time=10;
-document.getElementById("result").innerText="";
-runTimer();
-let q=currentQuiz[qi];
-document.getElementById("question").innerText=q.q;
-let ans=document.getElementById("answers");
-ans.innerHTML="";
-q.a.forEach(x=>{
-let b=document.createElement("button");
-b.innerText=x;
-b.onclick=()=>selectAnswer(x);
-ans.appendChild(b);
-});
-}
-
-function runTimer(){
-clearInterval(timer);
-timer=setInterval(()=>{
-time--;
-document.getElementById("timer").innerText="Time: "+time;
-if(time<=0){nextQ();}
-},1000);
-}
-
-function selectAnswer(a){
-clearInterval(timer);
-if(a===currentQuiz[qi].c){
-document.getElementById("result").innerText="Correct";
-score++;
-}else{
-document.getElementById("result").innerText="Wrong. Correct: "+currentQuiz[qi].c;
-}
-setTimeout(nextQ,1000);
-}
-
-function nextQ(){
-qi++;
-if(qi<currentQuiz.length){loadQ();}
-else{document.getElementById("result").innerText="Quiz Finished! Score: "+score+"/"+currentQuiz.length;}
-}
 </script>
 </body>
 </html>
